@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const gift = document.getElementById("gift");
       const present = document.getElementById("present");
       // reset animation
-      const shake = setInterval(function() {
+      const shake = setInterval(function () {
         // -> delete class
         gift.classList.remove("apply-shake");
         // -> triggering reflow The actual magic
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     static fade(element) {
       let op = 1; // initial opacity
-      const timer = setInterval(function() {
+      const timer = setInterval(function () {
         if (op <= 0.1) {
           clearInterval(timer);
           element.style.display = "none";
@@ -54,14 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
         particleCount: 5,
         angle: 180,
         spread: 360,
-        origin: { x: 0.8, y: 0 }
+        origin: { x: 0.8, y: 0 },
       });
       // and launch a few from the right edge
       confetti({
         particleCount: 5,
         angle: 360,
         spread: 360,
-        origin: { x: 0.2, y: 0 }
+        origin: { x: 0.2, y: 0 },
       });
 
       // keep showing confetti and play birthday song
@@ -72,16 +72,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   const present = document.getElementById("present");
-  let click = false;
-    present.addEventListener("click", () => {
-      if(click){
-        console.log('already clicked')
-        return 
-      } else {
-        console.log('first click')
-        Birthday.openBox();
-        click = true;
-      }
+  const date = document.getElementById("date");
+  const today = new Date();
+  let h1 = document.createElement("h1");
+  h1.append(today.toLocaleDateString());
 
-    });
+  date.append(h1);
+  console.log(date);
+  let click = false;
+  present.addEventListener("click", () => {
+    if (click) {
+      console.log("already clicked");
+      return;
+    } else {
+      console.log("first click");
+      Birthday.openBox();
+      click = true;
+    }
+  });
 });
